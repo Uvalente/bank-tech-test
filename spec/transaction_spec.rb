@@ -5,7 +5,7 @@ require 'transaction'
 describe Transaction do
   describe '#new' do
     it 'save the deposit operation' do
-      transaction = Transaction.new(balance: 50, credit: 270) 
+      transaction = Transaction.new(balance: 50, credit: 270)
       date = Date.today
       expect(transaction.balance).to eq 320
       expect(transaction.date).to eq date
