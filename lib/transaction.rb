@@ -3,13 +3,14 @@
 class Transaction
   attr_reader :transaction
 
-  def initialize
+  def initialize(balance)
+    @balance = balance
     @transaction = {}
   end
 
   def credit(value)
     @transaction[:date] = Date.today
     @transaction[:credit] = value
-    @transaction[:balance] = value
+    @transaction[:balance] = value + @balance
   end
 end
