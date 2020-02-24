@@ -5,6 +5,7 @@ require 'account'
 describe Account do
   let(:transaction) { double(:transaction) }
   let(:transaction_history) { double(:transaction_history) }
+  let(:printer) { double(:printer) }
 
   describe '#deposit' do
     it 'a user can deposit currency' do
@@ -34,6 +35,13 @@ describe Account do
     it 'a user can check his current balance' do
       expect(subject.balance).to eq 0
       expect(subject.deposit(5)).to eq subject.balance
+    end
+  end
+
+  describe '#print' do
+    it 'print only the header if there are no transaction' do
+      subject { Account.new(0, transaction_history, printer) }
+      expect { subject.print }.to output("date || credit || debit || balance\n").to_stdout
     end
   end
 end
