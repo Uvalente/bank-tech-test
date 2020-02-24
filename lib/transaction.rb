@@ -3,21 +3,13 @@
 require 'date'
 
 class Transaction
-  attr_reader :transaction
+  attr_reader :date, :credit, :debit, :balance
 
-  def deposit(balance, value)
-    @transaction = {}
-    @transaction[:date] = Date.today
-    @transaction[:credit] = value
-    @transaction[:balance] = balance + value
-    @transaction
-  end
-
-  def withdraw(balance, value)
-    @transaction = {}
-    @transaction[:date] = Date.today
-    @transaction[:debit] = value
-    @transaction[:balance] = balance - value
-    @transaction
+  def initialize(date: Date.today, credit: nil, debit: nil, balance:)
+    @date = date
+    @credit = credit
+    @debit = debit
+    @balance = balance + credit if credit
+    @balance = balance - debit if debit
   end
 end
