@@ -11,6 +11,12 @@ class Transaction
   def credit(value)
     @transaction[:date] = Date.today
     @transaction[:credit] = value
-    @transaction[:balance] = value + @balance
+    @transaction[:balance] = @balance + value
+  end
+
+  def debit(value)
+    @transaction[:date] = Date.today
+    @transaction[:debit] = value
+    @transaction[:balance] = @balance - value
   end
 end

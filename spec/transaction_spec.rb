@@ -19,4 +19,13 @@ describe Transaction do
       expect(transaction.transaction).to eq({ date: date, credit: 100, balance: 300 })
     end
   end
+
+  describe '#debit' do
+    it 'save the withdraw operation' do
+      transaction = Transaction.new(500)
+      date = Date.today
+      transaction.debit(100)
+      expect(transaction.transaction).to eq({ date: date, debit: 100, balance: 400 })
+    end
+  end
 end
