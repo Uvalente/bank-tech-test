@@ -25,9 +25,6 @@ class Account
   end
 
   def print
-    puts @printer.header
-    @statement.history.reverse.each do |transaction|
-      puts @printer.print(transaction)
-    end
+    puts @printer.display_statement(@statement.history)
   end
 end

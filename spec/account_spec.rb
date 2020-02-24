@@ -41,20 +41,11 @@ describe Account do
   end
 
   describe '#print' do
-    it 'print only the header if there are no transaction' do
+    it 'call statement on Printer' do
       subject = Account.new(0, transaction_history, printer)
-      allow(printer).to receive(:header) { 'date || credit || debit || balance' }
-      allow(transaction_history).to receive(:history) { [] }
+      allow(printer).to receive(:display_statement) { 'date || credit || debit || balance' }
+      allow(transaction_history).to receive(:history)
       expect { subject.print }.to output("date || credit || debit || balance\n").to_stdout
-    end
-
-    it 'print the transactions' do
-      subject = Account.new(0, transaction_history, printer)
-      allow(transaction_history).to receive(:history) { [deposit, deposit] }
-      allow(printer).to receive(:header) { 'date || credit || debit || balance' }
-      allow(printer).to receive(:print) { "#{deposit.date} || #{deposit.credit} || #{deposit.debit} || #{deposit.balance}" }
-      expect { subject.print }.to output(/date || credit || debit || balance\n/).to_stdout
-      expect { subject.print }.to output(%r{ 24/02/2020 || 1000 ||  || 1000\n}).to_stdout
     end
   end
 end

@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 class Printer
+  def display_statement(history)
+    transactions = history.reverse.map do |transaction|
+      print(transaction)
+    end
+    header + "\n" + transactions.join("\n")
+  end
+
+  private
+
   def header
     'date || credit || debit || balance'
   end
