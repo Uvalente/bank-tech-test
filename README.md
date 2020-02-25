@@ -13,7 +13,7 @@ Bank tech test is the first assigned.
 
 ## Test
 
-To run the tests, access the root folder and use
+To run the tests, access the app root folder and use
 ```
 rspec
 ```

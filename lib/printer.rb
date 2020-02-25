@@ -2,22 +2,22 @@
 
 # Responsible of printing statements from the account
 class Printer
-  def display_statement(history)
-    transactions = history.reverse.map do |transaction|
-      print(transaction)
-    end
-    header + "\n" + transactions.join("\n")
-  end
-
-  private
-
-  def header
+  def initialize
     date = formatter('date')
     credit = formatter('credit')
     debit = formatter('debit')
     balance = formatter('balance')
-    "#{date} || #{credit} || #{debit} || #{balance}"
+    @header = "#{date} || #{credit} || #{debit} || #{balance}"
   end
+
+  def display_statement(history)
+    transactions = history.reverse.map do |transaction|
+      print(transaction)
+    end
+    @header + "\n" + transactions.join("\n")
+  end
+
+  private
 
   def print(transaction)
     credit = float_formatter(transaction.credit)

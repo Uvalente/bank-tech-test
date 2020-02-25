@@ -4,7 +4,6 @@ require 'account'
 
 describe Account do
   let(:transaction_history) { double(:transaction_history) }
-  let(:transaction_history) { double(:transaction_history) }
   let(:printer) { double(:printer) }
 
   describe '#deposit' do
