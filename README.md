@@ -34,6 +34,18 @@ user.print
 
 ![irb](img/irb.png)
 
+## Approach & code structure
+
+The code is structured in different classes, that are injected to each other to achieve an easily testable and changeable code.
+
+I started with an Account class that can be instantiated, and provide methods for deposits and withdraws, changing the account balance to reflect the operation.
+
+To create a statement for the account, those operations are then saved as Transaction instances and stored in an instance of TransactionHistory.
+
+To print the statement Account relay on the Printer class.
+
+Printer is responsible for returning the string to print, it has private methods for the table header, formattings and returning a string, extracting the values from an instance of Transaction.
+
 ## Requirements
 
 * You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement a command line interface that takes input from STDIN.)
