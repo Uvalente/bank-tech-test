@@ -16,7 +16,11 @@ class Printer
   end
 
   def print(transaction)
-    "#{transaction.date.strftime('%d/%m/%Y')} || #{transaction.credit} || " \
-      "#{transaction.debit} || #{transaction.balance}"
+    credit = format('%<s>.2f', { s: transaction.credit }) if transaction.credit
+    debit = format('%<s>.2f', { s: transaction.debit }) if transaction.debit
+    balance = format('%<s>.2f', { s: transaction.balance })
+
+    "#{transaction.date.strftime('%d/%m/%Y')} || #{credit} || " \
+      "#{debit} || #{balance}"
   end
 end
