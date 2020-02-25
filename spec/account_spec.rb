@@ -3,11 +3,7 @@
 require 'account'
 
 describe Account do
-  let(:transaction) { double(:transaction) }
-  let(:deposit) { double(:transaction, date: '24/02/2020', credit: 1000, debit: nil, balance: 1000) }
-  let(:withdraw) { double(:transaction, date: Date.new(2020, 0o2, 24), credit: nil, debit: 500, balance: 2500) }
   let(:transaction_history) { double(:transaction_history) }
-  let(:printer) { double(:printer) }
 
   describe '#deposit' do
     it 'a user can deposit currency' do
@@ -32,6 +28,11 @@ describe Account do
       subject.withdraw(300)
     end
   end
+end
+
+describe Account do
+  let(:transaction_history) { double(:transaction_history) }
+  let(:printer) { double(:printer) }
 
   describe '#balance' do
     it 'a user can check his current balance' do
@@ -43,9 +44,10 @@ describe Account do
   describe '#print' do
     it 'call statement on Printer' do
       subject = Account.new(0, transaction_history, printer)
-      allow(printer).to receive(:display_statement) { 'date || credit || debit || balance' }
+      header = 'date || credit || debit || balance'
+      allow(printer).to receive(:display_statement) { header }
       allow(transaction_history).to receive(:history)
-      expect { subject.print }.to output("date || credit || debit || balance\n").to_stdout
+      expect { subject.print }.to output(header + "\n").to_stdout
     end
   end
 end

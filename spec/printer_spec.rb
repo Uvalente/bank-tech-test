@@ -3,9 +3,20 @@
 require 'printer'
 
 describe Printer do
-  let(:deposit) { double(:deposit, date: Date.new(2020, 0o2, 24), credit: 1000, debit: nil, balance: 1000) }
-  let(:withdraw) { double(:withdraw, date: Date.new(2020, 0o2, 24), credit: nil, debit: 500, balance: 2500) }
-  # let(:history) { double(:history, history: [deposit, withdraw]) }
+  let(:deposit) do
+    double(:deposit,
+           date: Date.new(2020, 0o2, 24),
+           credit: 1000,
+           debit: nil,
+           balance: 1000)
+  end
+  let(:withdraw) do
+    double(:withdraw,
+           date: Date.new(2020, 0o2, 24),
+           credit: nil,
+           debit: 500,
+           balance: 2500)
+  end
 
   it 'print a whole statement' do
     header = "date || credit || debit || balance\n"

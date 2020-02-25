@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'transaction'
+
+# Create and store instance of Transaction
 class TransactionHistory
   attr_reader :history
   def initialize(transaction = Transaction)

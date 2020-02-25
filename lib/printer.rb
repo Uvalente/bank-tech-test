@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Responsible of printing statements from the account
 class Printer
   def display_statement(history)
     transactions = history.reverse.map do |transaction|
@@ -15,6 +16,7 @@ class Printer
   end
 
   def print(transaction)
-    "#{transaction.date.strftime('%d/%m/%Y')} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}"
+    "#{transaction.date.strftime('%d/%m/%Y')} || #{transaction.credit} || " \
+      "#{transaction.debit} || #{transaction.balance}"
   end
 end

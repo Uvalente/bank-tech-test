@@ -5,10 +5,13 @@ require_relative 'printer'
 
 INITIAL_BALANCE = 0
 
+# Responsible of updating the account balance
 class Account
   attr_reader :balance, :statement
 
-  def initialize(balance = INITIAL_BALANCE, statement = TransactionHistory.new, printer = Printer.new)
+  def initialize(balance = INITIAL_BALANCE,
+                 statement = TransactionHistory.new,
+                 printer = Printer.new)
     @balance = balance
     @statement = statement
     @printer = printer

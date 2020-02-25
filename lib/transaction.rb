@@ -2,6 +2,7 @@
 
 require 'date'
 
+# Responsible of instantiating a instance of Transaction
 class Transaction
   attr_reader :date, :credit, :debit, :balance
 
