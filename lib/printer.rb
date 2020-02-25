@@ -12,15 +12,27 @@ class Printer
   private
 
   def header
-    'date || credit || debit || balance'
+    date = formatter('date')
+    credit = formatter('credit')
+    debit = formatter('debit')
+    balance = formatter('balance')
+    "#{date} || #{credit} || #{debit} || #{balance}"
   end
 
   def print(transaction)
-    credit = format('%<s>.2f', { s: transaction.credit }) if transaction.credit
-    debit = format('%<s>.2f', { s: transaction.debit }) if transaction.debit
-    balance = format('%<s>.2f', { s: transaction.balance })
+    credit = float_formatter(transaction.credit)
+    debit = float_formatter(transaction.debit)
+    balance = float_formatter(transaction.balance)
 
     "#{transaction.date.strftime('%d/%m/%Y')} || #{credit} || " \
       "#{debit} || #{balance}"
+  end
+
+  def float_formatter(value)
+    value ? format('%<s>.2f', { s: value }).ljust(10) : ''.ljust(10)
+  end
+
+  def formatter(string)
+    string.ljust(10)
   end
 end
