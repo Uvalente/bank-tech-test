@@ -3,11 +3,7 @@
 # Responsible of printing statements from the account
 class Printer
   def initialize
-    date = formatter('date')
-    credit = formatter('credit')
-    debit = formatter('debit')
-    balance = formatter('balance')
-    @header = "#{date} || #{credit} || #{debit} || #{balance}"
+    @header = 'date || credit || debit || balance'
   end
 
   def display_statement(history)
@@ -29,10 +25,6 @@ class Printer
   end
 
   def float_formatter(value)
-    value ? format('%<s>.2f', { s: value }).ljust(10) : ''.ljust(10)
-  end
-
-  def formatter(string)
-    string.ljust(10)
+    value ? format('%<s>.2f', { s: value }) : ''
   end
 end

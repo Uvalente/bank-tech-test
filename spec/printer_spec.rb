@@ -19,9 +19,9 @@ describe Printer do
   end
 
   it 'print a whole statement' do
-    header = "date       || credit     || debit      || balance   \n"
-    deposit_string = '24/02/2020 || 1000.00    ||            || 1000.00   '
-    withdraw_string = "24/02/2020 ||            || 500.00     || 2500.00   \n"
+    header = "date || credit || debit || balance\n"
+    deposit_string = '24/02/2020 || 1000.00 ||  || 1000.00'
+    withdraw_string = "24/02/2020 ||  || 500.00 || 2500.00\n"
     result = [header, withdraw_string, deposit_string].join('')
     history = [deposit, withdraw]
     expect(subject.display_statement(history)).to eq(result)
